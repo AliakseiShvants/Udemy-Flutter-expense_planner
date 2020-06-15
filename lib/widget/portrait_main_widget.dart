@@ -1,4 +1,5 @@
 import 'package:expense_planner/entity/transaction.dart';
+import 'package:expense_planner/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'chart_widget.dart';
 import 'transaction_list_widget.dart';
@@ -9,7 +10,7 @@ class PortraitMainWidget extends StatelessWidget {
   final List<Transaction> _transactions;
   final Function _deleteTransaction;
 
-  PortraitMainWidget(this._appBar, this._recentTransactions, this._transactions,
+  const PortraitMainWidget(this._appBar, this._recentTransactions, this._transactions,
       this._deleteTransaction);
 
   @override
@@ -27,7 +28,7 @@ class PortraitMainWidget extends StatelessWidget {
                   .of(context)
                   .padding
                   .top) *
-              0.3,
+              Constants.CHART_HEIGHT,
           child: ChartWidget(_recentTransactions),
         ),
         Container(
@@ -40,7 +41,7 @@ class PortraitMainWidget extends StatelessWidget {
                   .of(context)
                   .padding
                   .top) *
-              0.7,
+              Constants.TRANSACTION_LIST_HEIGHT,
           child: TransactionListWidget(_transactions, _deleteTransaction),
         ),
       ],

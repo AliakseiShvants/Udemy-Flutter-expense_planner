@@ -1,10 +1,11 @@
+import 'package:expense_planner/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class InputWidget extends StatefulWidget {
   final Function _addTransactionCallback;
 
-  InputWidget(this._addTransactionCallback);
+  const InputWidget(this._addTransactionCallback);
 
   @override
   _InputWidgetState createState() => _InputWidgetState();
@@ -13,10 +14,10 @@ class InputWidget extends StatefulWidget {
 class _InputWidgetState extends State<InputWidget> {
   final _titleController = new TextEditingController();
   final _amountController = new TextEditingController();
-  final first = new DateTime(
-      DateTime.now().year, DateTime.now().month, DateTime.now().day - 7);
-  final last = new DateTime(
-      DateTime.now().year, DateTime.now().month, DateTime.now().day + 7);
+  final first = new DateTime(DateTime.now().year, DateTime.now().month,
+      DateTime.now().day - Constants.DAYS_OF_WEEK);
+  final last = new DateTime(DateTime.now().year, DateTime.now().month,
+      DateTime.now().day + Constants.DAYS_OF_WEEK);
   DateTime _datePicker = DateTime.now();
 
   void _submit() {
@@ -57,36 +58,37 @@ class _InputWidgetState extends State<InputWidget> {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(
-          top: 16,
-          right: 8,
-          left: 8,
+          top: Constants.PADDING_M,
+          right: Constants.PADDING_S,
+          left: Constants.PADDING_S,
           bottom: MediaQuery.of(context).viewInsets.bottom),
       child: Wrap(
         alignment: WrapAlignment.center,
         children: [
           TextField(
-            decoration: InputDecoration(labelText: 'Title'),
+            decoration: const InputDecoration(labelText: Constants.TITLE),
             controller: _titleController,
             onSubmitted: (_) => _submit,
           ),
           TextField(
-              decoration: InputDecoration(labelText: 'Amount'),
+              decoration: const InputDecoration(labelText: Constants.AMOUNT),
               controller: _amountController,
-              keyboardType: TextInputType.numberWithOptions(decimal: true),
+              keyboardType:
+                  const TextInputType.numberWithOptions(decimal: true),
               onSubmitted: (_) => _submit),
           Container(
             child: Row(
               children: [
                 Expanded(
                   child: Text(_datePicker == null
-                      ? 'No date'
-                      : 'Picked date: ${DateFormat.yMd().format(_datePicker)}'),
+                      ? Constants.NO_DATA
+                      : '${Constants.PICKED_DATE} ${DateFormat.yMd().format(_datePicker)}'),
                 ),
                 FlatButton(
-                  padding: EdgeInsets.all(0),
-                  child: Text(
-                    'Choose date',
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                  padding: EdgeInsets.all(Constants.DEFAULT_DOUBLE),
+                  child: const Text(
+                    Constants.CHOOSE_DATE,
+                    style: const TextStyle(fontWeight: FontWeight.bold),
                   ),
                   textColor: Theme.of(context).primaryColor,
                   onPressed: _getDatePicker,
@@ -95,10 +97,13 @@ class _InputWidgetState extends State<InputWidget> {
             ),
           ),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 0, vertical: 16),
+            padding: EdgeInsets.symmetric(
+              horizontal: Constants.DEFAULT_DOUBLE,
+              vertical: Constants.PADDING_M,
+            ),
             child: RaisedButton(
               onPressed: _submit,
-              child: Text('Add'),
+              child: const Text(Constants.ADD),
               color: Theme.of(context).primaryColor,
               textColor: Theme.of(context).textTheme.button.color,
             ),

@@ -1,3 +1,5 @@
+import 'utils/constants.dart';
+import 'utils/themes.dart';
 import 'package:flutter/material.dart';
 
 import 'entity/transaction.dart';
@@ -17,26 +19,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: MyHomePage(),
-      title: 'Personal Expenses',
+      title: Constants.APP_NAME,
       theme: ThemeData(
         primarySwatch: Colors.green,
         accentColor: Colors.amber,
-        fontFamily: 'QuickSand',
-        textTheme: ThemeData.light().textTheme.copyWith(
-              headline6: TextStyle(
-                fontFamily: 'OpenSans',
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
-              button: TextStyle(color: Colors.white),
-            ),
+        fontFamily: Constants.QUICK_SAND,
+        textTheme: Themes.mainTextTheme,
         appBarTheme: AppBarTheme(
-          textTheme: ThemeData.light().textTheme.copyWith(
-                headline6: TextStyle(
-                  fontSize: 20,
-                ),
-              ),
+          textTheme: Themes.appBarTextTheme,
         ),
       ),
     );
@@ -61,7 +51,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   List<Transaction> get _recentTransactions {
     return _transactions.where((element) {
-      return element.date.isAfter(DateTime.now().subtract(Duration(days: 7)));
+      return element.date.isAfter(
+          DateTime.now().subtract(Duration(days: Constants.DAYS_OF_WEEK)));
     }).toList();
   }
 
@@ -79,7 +70,8 @@ class _MyHomePageState extends State<MyHomePage> {
         builder: (ctx) => InputWidget(_addTransaction),
         isScrollControlled: true,
         shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.vertical(top: Radius.circular(4.0))));
+            borderRadius: BorderRadius.vertical(
+                top: Radius.circular(Constants.BORDER_RADIUS))));
   }
 
   void _deleteTransaction(String id) {
@@ -90,15 +82,13 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final isPortrait =
-        MediaQuery.of(context).orientation == Orientation.portrait;
+    final mediaQuery = MediaQuery.of(context);
+    final isPortrait = mediaQuery.orientation == Orientation.portrait;
     final appBar = AppBar(
-      title: Text(
-        'Personal Expenses',
-      ),
+      title: const Text(Constants.APP_NAME),
       actions: [
         IconButton(
-          icon: Icon(Icons.add),
+          icon: const Icon(Icons.add),
           onPressed: () => _addNewTransaction(context),
         )
       ],
@@ -111,9 +101,9 @@ class _MyHomePageState extends State<MyHomePage> {
             ? PortraitMainWidget(
                 appBar, _transactions, _recentTransactions, _deleteTransaction)
             : Container(
-                height: (MediaQuery.of(context).size.height -
+                height: (mediaQuery.size.height -
                         appBar.preferredSize.height -
-                        MediaQuery.of(context).padding.top) *
+                        mediaQuery.padding.top) *
                     1,
                 child: TransactionListWidget(_transactions, _deleteTransaction),
               ),
@@ -121,7 +111,7 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
         backgroundColor: Theme.of(context).primaryColorDark,
-        child: Icon(
+        child: const Icon(
           Icons.add,
           color: Colors.white,
         ),
