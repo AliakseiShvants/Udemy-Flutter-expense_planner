@@ -3,11 +3,11 @@ import 'package:expense_planner/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-class TransactionWidget extends StatelessWidget {
+class TransactionItem extends StatelessWidget {
   final Transaction _transaction;
   final Function _deleteCallback;
 
-  const TransactionWidget(this._transaction, this._deleteCallback);
+  const TransactionItem(this._transaction, this._deleteCallback);
 
   @override
   Widget build(BuildContext context) {

@@ -2,7 +2,7 @@ import 'package:expense_planner/utils/constants.dart';
 import 'package:expense_planner/widget/empty_widget.dart';
 
 import '../entity/transaction.dart';
-import './transaction_widget.dart';
+import './transaction_item.dart';
 import 'package:flutter/material.dart';
 
 class TransactionListWidget extends StatefulWidget {
@@ -30,7 +30,7 @@ class _TransactionListWidgetState extends State<TransactionListWidget> {
             padding: const EdgeInsets.only(bottom: Constants.BOTTOM_PADDING),
             child: ListView.builder(
               itemBuilder: (context, index) {
-                return TransactionWidget(_transactions[index], _deleteCallback);
+                return TransactionItem(_transactions[index], _deleteCallback);
               },
               itemCount: _transactions.length,
             ),

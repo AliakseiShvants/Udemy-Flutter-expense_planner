@@ -58,10 +58,11 @@ class _InputWidgetState extends State<InputWidget> {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(
-          top: Constants.PADDING_M,
-          right: Constants.PADDING_S,
-          left: Constants.PADDING_S,
-          bottom: MediaQuery.of(context).viewInsets.bottom),
+        top: Constants.PADDING_M,
+        right: Constants.PADDING_S,
+        left: Constants.PADDING_S,
+        bottom: MediaQuery.of(context).viewInsets.bottom,
+      ),
       child: Wrap(
         alignment: WrapAlignment.center,
         children: [
@@ -71,11 +72,11 @@ class _InputWidgetState extends State<InputWidget> {
             onSubmitted: (_) => _submit,
           ),
           TextField(
-              decoration: const InputDecoration(labelText: Constants.AMOUNT),
-              controller: _amountController,
-              keyboardType:
-                  const TextInputType.numberWithOptions(decimal: true),
-              onSubmitted: (_) => _submit),
+            decoration: const InputDecoration(labelText: Constants.AMOUNT),
+            controller: _amountController,
+            keyboardType: const TextInputType.numberWithOptions(decimal: true),
+            onSubmitted: (_) => _submit,
+          ),
           Container(
             child: Row(
               children: [

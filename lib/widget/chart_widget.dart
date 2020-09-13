@@ -40,23 +40,20 @@ class ChartWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: Constants.CARD_ELEVATION,
-      child: Container(
-        padding: EdgeInsets.all(Constants.CARD_PADDING),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: groupedTransactionValues.map((data) {
-            return Flexible(
-              fit: FlexFit.tight,
-              child: ChartBarWidget(
-                data[Constants.DAY],
-                data[Constants.AMOUNT],
-                totalSpending == Constants.DEFAULT_DOUBLE
-                    ? Constants.DEFAULT_DOUBLE
-                    : (data[Constants.AMOUNT] as double) / totalSpending,
-              ),
-            );
-          }).toList(),
-        ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: groupedTransactionValues.map((data) {
+          return Flexible(
+            fit: FlexFit.tight,
+            child: ChartBarWidget(
+              data[Constants.DAY],
+              data[Constants.AMOUNT],
+              totalSpending == Constants.DEFAULT_DOUBLE
+                  ? Constants.DEFAULT_DOUBLE
+                  : (data[Constants.AMOUNT] as double) / totalSpending,
+            ),
+          );
+        }).toList(),
       ),
     );
   }

@@ -8,11 +8,13 @@ class Constants {
   static const double CARD_MARGIN = 4.0;
   static const double CARD_ELEVATION = 8.0;
   static const double CARD_PADDING = 8.0;
-  static const double CHART_HEIGHT = 0.3;
-  static const double CHART_BAR_SIZE_BOX = 0.04;
-  static const double CHART_BAR_TEXT_HEIGHT = 0.14;
-  static const double CHART_BAR_MAIN_CONTAINER_HEIGHT = 0.64;
-  static const double CHART_BAR_MAIN_CONTAINER_WIDTH =12;
+  static const double CHART_HEIGHT = 0.2;
+
+  static const double CHART_BAR_SIZE_BOX = 0.02;
+  static const double CHART_BAR_TEXT_HEIGHT = 0.10;
+  static const double CHART_BAR_MAIN_CONTAINER_HEIGHT = 0.5;
+  static const double CHART_BAR_MAIN_CONTAINER_WIDTH = 12;
+
   static const double CIRCLE_AVATAR = 32.0;
 
   static const double DEFAULT_DOUBLE = 0.0;
@@ -28,7 +30,7 @@ class Constants {
 
   static const double SIZED_BOX_HEIGHT = 10;
 
-  static const double TRANSACTION_LIST_HEIGHT = 0.7;
+  static const double TRANSACTION_LIST_HEIGHT = 0.8;
 
 
   static const int DAYS_OF_WEEK = 7;

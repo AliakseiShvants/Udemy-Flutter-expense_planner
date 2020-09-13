@@ -66,12 +66,15 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _addNewTransaction(BuildContext ctx) {
     showModalBottomSheet(
-        context: ctx,
-        builder: (ctx) => InputWidget(_addTransaction),
-        isScrollControlled: true,
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.vertical(
-                top: Radius.circular(Constants.BORDER_RADIUS))));
+      context: ctx,
+      builder: (ctx) => InputWidget(_addTransaction),
+      isScrollControlled: true,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(Constants.BORDER_RADIUS),
+        ),
+      ),
+    );
   }
 
   void _deleteTransaction(String id) {
